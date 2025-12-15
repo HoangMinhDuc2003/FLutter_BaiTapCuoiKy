@@ -474,7 +474,14 @@ class Booking extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                         ),
                       ),
-                      Text(" 1 giường", style: TextStyle(fontSize: 15)),
+                      Expanded(
+                        child: Text(
+                          " 1 giường",
+                          style: TextStyle(fontSize: 15),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
 
