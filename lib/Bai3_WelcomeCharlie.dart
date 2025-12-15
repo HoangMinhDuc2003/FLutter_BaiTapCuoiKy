@@ -61,9 +61,16 @@ class WelcomeCharlie extends StatelessWidget {
             children: [
               TextSpan(
                 text: "WELCOME,\n",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                  color: Colors.black,
+                ),
               ),
-              TextSpan(text: "Charlie", style: TextStyle(fontSize: 40)),
+              TextSpan(
+                text: "Charlie",
+                style: TextStyle(fontSize: 40, color: Colors.black),
+              ),
             ],
           ),
         ),

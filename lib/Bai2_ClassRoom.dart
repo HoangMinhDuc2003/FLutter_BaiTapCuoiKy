@@ -47,12 +47,16 @@ class ClassRoom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "XML và ứng dụng - Nhóm 1",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  "XML và ứng dụng - Nhóm 1",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               IconButton(
@@ -96,12 +100,16 @@ class ClassRoom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Lập trình ứng dụng cho các t...",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  "Lập trình ứng dụng cho các t...",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               IconButton(
@@ -145,12 +153,16 @@ class ClassRoom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Lập trình ứng dụng cho các t...",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  "Lập trình ứng dụng cho các t...",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               IconButton(
@@ -194,12 +206,16 @@ class ClassRoom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "XML và ứng dụng - Nhóm 3",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  "XML và ứng dụng - Nhóm 3",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               IconButton(
@@ -243,12 +259,16 @@ class ClassRoom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "XML và ứng dụng - Nhóm 2",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              Expanded(
+                child: Text(
+                  "XML và ứng dụng - Nhóm 2",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
               IconButton(

@@ -108,6 +108,7 @@ Widget ListBaiTap() {
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: ListTile(
+                    //Icon từng bài tập:
                     leading: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -116,6 +117,8 @@ Widget ListBaiTap() {
                       ),
                       child: Icon(iconList[index], color: Colors.blue),
                     ),
+
+                    //Tên từng bài tập:
                     title: Text(
                       tenBaiTap[index],
                       style: TextStyle(
@@ -124,6 +127,8 @@ Widget ListBaiTap() {
                       ),
                     ),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16),
+
+                    //Ấn chuyển trang:
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
