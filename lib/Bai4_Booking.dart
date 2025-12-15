@@ -6,6 +6,7 @@ class Booking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
         title: Row(
           children: [
@@ -17,6 +18,8 @@ class Booking extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
+
+      //Body ở đây:
       body: SafeArea(child: MyBody()),
     );
   }
@@ -60,7 +63,6 @@ class Booking extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // 👈 BÊN TRÁI CO LẠI
           Expanded(
             child: Row(
               children: const [
@@ -77,8 +79,6 @@ class Booking extends StatelessWidget {
               ],
             ),
           ),
-
-          // 👉 BÊN PHẢI CỐ ĐỊNH
           const Text("23 thg 10 – 24 thg 10", style: TextStyle(fontSize: 13)),
         ],
       ),
@@ -140,7 +140,7 @@ class Booking extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ================= LEFT: IMAGE =================
+            // Ảnh nhà:
             Flexible(
               flex: 4,
               child: ClipRRect(
@@ -166,16 +166,14 @@ class Booking extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(width: 12),
-
-            // ================= RIGHT: INFO =================
+            // Thông tin:
             Flexible(
               flex: 6,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title + heart
+                  //Tên nhà:
                   Row(
                     children: [
                       Expanded(
@@ -192,10 +190,9 @@ class Booking extends StatelessWidget {
                       Icon(Icons.favorite_border),
                     ],
                   ),
-
                   SizedBox(height: 6),
 
-                  // ⭐⭐⭐⭐⭐
+                  // Số sao:
                   Row(
                     children: List.generate(
                       5,
@@ -206,7 +203,7 @@ class Booking extends StatelessWidget {
 
                   SizedBox(height: 6),
 
-                  // Rating
+                  // Số đánh giá:
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -228,8 +225,6 @@ class Booking extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Xuất sắc · 95 đánh giá",
@@ -243,10 +238,9 @@ class Booking extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 6),
 
-                  // Location
+                  // Vị trí:
                   Row(
                     children: [
                       Icon(Icons.location_on_outlined, size: 16),
@@ -255,8 +249,6 @@ class Booking extends StatelessWidget {
                       SizedBox(width: 6),
                       Icon(Icons.circle, size: 5),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Cách bạn 0.6 km",
@@ -267,9 +259,9 @@ class Booking extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 8),
 
+                  //Thông tin:
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -283,10 +275,9 @@ class Booking extends StatelessWidget {
                       Text(" 1 giường", style: TextStyle(fontSize: 15)),
                     ],
                   ),
-
                   SizedBox(height: 12),
 
-                  // Price
+                  // Giá cả:
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Column(
@@ -334,7 +325,7 @@ class Booking extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ================= LEFT: IMAGE =================
+            // Ảnh ở đây:
             Flexible(
               flex: 4,
               child: ClipRRect(
@@ -360,16 +351,14 @@ class Booking extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(width: 12),
 
-            // ================= RIGHT: INFO =================
+            // Thông tin ở đây:
             Flexible(
               flex: 6,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title + heart
                   Row(
                     children: [
                       Expanded(
@@ -386,10 +375,7 @@ class Booking extends StatelessWidget {
                       Icon(Icons.favorite_border),
                     ],
                   ),
-
                   SizedBox(height: 6),
-
-                  // ⭐⭐⭐⭐⭐
                   Row(
                     children: List.generate(
                       5,
@@ -397,10 +383,7 @@ class Booking extends StatelessWidget {
                           Icon(Icons.star, size: 16, color: Colors.amber),
                     ),
                   ),
-
                   SizedBox(height: 6),
-
-                  // Rating
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -422,8 +405,6 @@ class Booking extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Tuyệt hảo · 34 đánh giá",
@@ -437,10 +418,7 @@ class Booking extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 6),
-
-                  // Location
                   Row(
                     children: [
                       Icon(Icons.location_on_outlined, size: 16),
@@ -449,8 +427,6 @@ class Booking extends StatelessWidget {
                       SizedBox(width: 6),
                       Icon(Icons.circle, size: 5),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Cách bạn 0.9 km",
@@ -461,9 +437,7 @@ class Booking extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 8),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -484,10 +458,7 @@ class Booking extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 12),
-
-                  // Price
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Column(
@@ -535,7 +506,7 @@ class Booking extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ================= LEFT: IMAGE =================
+            // Ảnh nhà:
             Flexible(
               flex: 4,
               child: ClipRRect(
@@ -554,7 +525,7 @@ class Booking extends StatelessWidget {
 
             SizedBox(width: 12),
 
-            // ================= RIGHT: INFO =================
+            // Thông tin:
             Flexible(
               flex: 6,
               child: Column(
@@ -604,8 +575,6 @@ class Booking extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Rất tốt · 1 đánh giá",
@@ -628,8 +597,6 @@ class Booking extends StatelessWidget {
                       SizedBox(width: 6),
                       Icon(Icons.circle, size: 5),
                       SizedBox(width: 6),
-
-                      // ⭐ FIX OVERFLOW Ở ĐÂY
                       Expanded(
                         child: Text(
                           "Cách bạn 1.3 km",

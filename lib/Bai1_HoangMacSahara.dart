@@ -6,6 +6,7 @@ class HoangMacSahara extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
         title: Row(
           children: [
@@ -17,6 +18,8 @@ class HoangMacSahara extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
+
+      //Body ở đây:
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -41,7 +44,6 @@ class HoangMacSahara extends StatelessWidget {
   Widget blockImage() {
     var src =
         "https://images.unsplash.com/photo-1489573280374-2e193c63726c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Image.network(

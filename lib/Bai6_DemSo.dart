@@ -36,6 +36,7 @@ class _DemSoState extends State<DemSo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
         title: Row(
           children: [
@@ -47,6 +48,8 @@ class _DemSoState extends State<DemSo> {
         centerTitle: true,
         elevation: 2,
       ),
+
+      //Body ở đây:
       body: SafeArea(child: MyBody()),
     );
   }

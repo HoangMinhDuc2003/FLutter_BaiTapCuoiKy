@@ -39,6 +39,7 @@ class _ChangeColorState extends State<ChangeColor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
         title: Row(
           children: [
@@ -49,6 +50,8 @@ class _ChangeColorState extends State<ChangeColor> {
         ),
         centerTitle: true,
       ),
+
+      //Body ở đây:
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(color: bgColor),

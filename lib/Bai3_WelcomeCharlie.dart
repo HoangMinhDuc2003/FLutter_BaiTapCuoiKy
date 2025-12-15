@@ -7,6 +7,7 @@ class WelcomeCharlie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
         title: Row(
           children: [
@@ -18,6 +19,8 @@ class WelcomeCharlie extends StatelessWidget {
         centerTitle: true,
         elevation: 2,
       ),
+
+      //Body ở đây:
       body: SafeArea(child: MyBody()),
     );
   }
