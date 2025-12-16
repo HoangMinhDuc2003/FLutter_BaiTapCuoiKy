@@ -1,4 +1,4 @@
-import 'package:bai_giua_ky/List_BaiTap.dart';
+import 'package:bai_giua_ky/screens/List_BaiTap.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Bài Tập Cuối Kỳ", home: List_BaiTap());
+    return MaterialApp(home: List_BaiTap());
   }
 }

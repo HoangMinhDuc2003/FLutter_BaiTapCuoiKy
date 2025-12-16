@@ -1,0 +1,242 @@
+import 'package:bai_giua_ky/UI/Bai12_ThongTin.dart';
+import 'package:bai_giua_ky/api/api_service.dart';
+import 'package:bai_giua_ky/model/logins.dart';
+import 'package:flutter/material.dart';
+
+class DangNhapReal extends StatefulWidget {
+  const DangNhapReal({super.key});
+
+  @override
+  State<DangNhapReal> createState() => _DangNhapState();
+}
+
+class _DangNhapState extends State<DangNhapReal> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //App bar ở đây:
+      appBar: AppBar(
+        //Màu cho icon:
+        iconTheme: const IconThemeData(color: Colors.white),
+
+        //Màu cho background:
+        elevation: 0,
+        toolbarHeight: 60,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF1A73E8), Color.fromARGB(255, 255, 255, 255)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+
+        //Title nằm ở đây nè:
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.login, size: 24),
+                ),
+                SizedBox(width: 12),
+                Text(
+                  "Đăng Nhập",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+      body: SafeArea(child: MyBody()),
+    );
+  }
+
+  //Lấy thông tin từ khung:
+  final txtUser = TextEditingController();
+  final txtPass = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
+  Widget MyBody() {
+    return Center(
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Container(
+            width: 420,
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // 🔹 Header
+                Column(
+                  children: const [
+                    CircleAvatar(
+                      radius: 36,
+                      backgroundColor: Color(0xFF1A73E8),
+                      child: Icon(Icons.login, color: Colors.white, size: 36),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Đăng nhập',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      'Vui lòng đăng nhập để tiếp tục',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 32),
+
+                // 🔹 Tài khoản
+                TextFormField(
+                  controller: txtUser,
+                  decoration: InputDecoration(
+                    labelText: 'Tài khoản',
+                    prefixIcon: const Icon(Icons.person_outline),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Vui lòng nhập tài khoản';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 20),
+
+                // 🔹 Mật khẩu
+                TextFormField(
+                  controller: txtPass,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    labelText: 'Mật khẩu',
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Vui lòng nhập mật khẩu';
+                    }
+                    return null;
+                  },
+                ),
+
+                const SizedBox(height: 12),
+
+                // 🔹 Quên mật khẩu (placeholder)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text('Quên mật khẩu?'),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // 🔹 Button đăng nhập
+                SizedBox(
+                  height: 52,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        try {
+                          LoginResponse lr = await api.Login(
+                            txtUser.text.trim(),
+                            txtPass.text.trim(),
+                          );
+                          if (!mounted) return;
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ThongTin(lr: lr),
+                            ),
+                          );
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              title: const Text('Đăng nhập thất bại'),
+                              content: const Text(
+                                'Sai tài khoản hoặc mật khẩu',
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1A73E8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                    child: const Text(
+                      'ĐĂNG NHẬP',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

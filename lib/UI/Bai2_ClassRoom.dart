@@ -8,15 +8,51 @@ class ClassRoom extends StatelessWidget {
     return Scaffold(
       //App bar ở đây:
       appBar: AppBar(
-        title: Row(
+        //Màu cho icon:
+        iconTheme: const IconThemeData(color: Colors.white),
+
+        //Màu cho background:
+        elevation: 0,
+        toolbarHeight: 60,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF1A73E8), Color.fromARGB(255, 255, 255, 255)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+
+        //Title nằm ở đây nè:
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.class_),
-            SizedBox(width: 10),
-            Text("Class Room"),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.class_, size: 24),
+                ),
+                SizedBox(width: 12),
+                Text(
+                  "Class Room",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-        centerTitle: true,
-        elevation: 2,
       ),
 
       //Body ở đây:
@@ -62,9 +98,44 @@ class ClassRoom extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 icon: const Icon(Icons.more_horiz, color: Colors.white),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'move',
+                    child: Row(
+                      children: [
+                        Icon(Icons.drive_file_move, size: 20),
+                        SizedBox(width: 8),
+                        Text('Di chuyển'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'hide',
+                    child: Row(
+                      children: [
+                        Icon(Icons.visibility_off, size: 20),
+                        SizedBox(width: 8),
+                        Text('Ẩn'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'unsubscribe',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, size: 20),
+                        SizedBox(width: 8),
+                        Text('Hủy đăng ký'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -115,9 +186,44 @@ class ClassRoom extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 icon: const Icon(Icons.more_horiz, color: Colors.white),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'move',
+                    child: Row(
+                      children: [
+                        Icon(Icons.drive_file_move, size: 20),
+                        SizedBox(width: 8),
+                        Text('Di chuyển'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'hide',
+                    child: Row(
+                      children: [
+                        Icon(Icons.visibility_off, size: 20),
+                        SizedBox(width: 8),
+                        Text('Ẩn'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'unsubscribe',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, size: 20),
+                        SizedBox(width: 8),
+                        Text('Hủy đăng ký'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -168,9 +274,44 @@ class ClassRoom extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 icon: const Icon(Icons.more_horiz, color: Colors.white),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'move',
+                    child: Row(
+                      children: [
+                        Icon(Icons.drive_file_move, size: 20),
+                        SizedBox(width: 8),
+                        Text('Di chuyển'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'hide',
+                    child: Row(
+                      children: [
+                        Icon(Icons.visibility_off, size: 20),
+                        SizedBox(width: 8),
+                        Text('Ẩn'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'unsubscribe',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, size: 20),
+                        SizedBox(width: 8),
+                        Text('Hủy đăng ký'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -221,9 +362,44 @@ class ClassRoom extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 icon: const Icon(Icons.more_horiz, color: Colors.white),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'move',
+                    child: Row(
+                      children: [
+                        Icon(Icons.drive_file_move, size: 20),
+                        SizedBox(width: 8),
+                        Text('Di chuyển'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'hide',
+                    child: Row(
+                      children: [
+                        Icon(Icons.visibility_off, size: 20),
+                        SizedBox(width: 8),
+                        Text('Ẩn'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'unsubscribe',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, size: 20),
+                        SizedBox(width: 8),
+                        Text('Hủy đăng ký'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -274,9 +450,44 @@ class ClassRoom extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
+              PopupMenuButton<String>(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 icon: const Icon(Icons.more_horiz, color: Colors.white),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'move',
+                    child: Row(
+                      children: [
+                        Icon(Icons.drive_file_move, size: 20),
+                        SizedBox(width: 8),
+                        Text('Di chuyển'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'hide',
+                    child: Row(
+                      children: [
+                        Icon(Icons.visibility_off, size: 20),
+                        SizedBox(width: 8),
+                        Text('Ẩn'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'unsubscribe',
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, size: 20),
+                        SizedBox(width: 8),
+                        Text('Hủy đăng ký'),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

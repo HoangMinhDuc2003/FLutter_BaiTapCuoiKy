@@ -41,14 +41,51 @@ class _ChangeColorState extends State<ChangeColor> {
     return Scaffold(
       //App bar ở đây:
       appBar: AppBar(
-        title: Row(
+        //Màu cho icon:
+        iconTheme: const IconThemeData(color: Colors.white),
+
+        //Màu cho background:
+        elevation: 0,
+        toolbarHeight: 60,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF1A73E8), Color.fromARGB(255, 255, 255, 255)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+
+        //Title nằm ở đây nè:
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.change_circle),
-            SizedBox(width: 10),
-            Text("Change Colors"),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.change_circle, size: 24),
+                ),
+                SizedBox(width: 12),
+                Text(
+                  "Change Colors",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-        centerTitle: true,
       ),
 
       //Body ở đây:

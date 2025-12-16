@@ -1,5 +1,5 @@
-import 'package:bai_giua_ky/Bai12_DangNhap.dart';
-import 'package:bai_giua_ky/api_service.dart';
+import 'package:bai_giua_ky/UI/Bai12_DangNhap.dart';
+import 'package:bai_giua_ky/api/api_service.dart';
 import 'package:bai_giua_ky/model/logins.dart';
 import 'package:bai_giua_ky/model/user.dart';
 import 'package:flutter/material.dart';
@@ -25,22 +25,45 @@ class _ThongTinState extends State<ThongTin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //App bar ở đây:
       appBar: AppBar(
+        //Màu cho icon:
+        iconTheme: const IconThemeData(color: Colors.white),
+
+        //Màu cho background:
+        elevation: 0,
+        toolbarHeight: 60,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF1A73E8), Color.fromARGB(255, 255, 255, 255)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+
         title: Row(
           children: [
             Icon(Icons.verified_user),
             SizedBox(width: 5),
-            Text("Thông Tin Người Dùng"),
+            Text(
+              "Profile",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 0.5,
+              ),
+            ),
           ],
         ),
-        centerTitle: true,
-        elevation: 2,
         actions: [
           IconButton(
             onPressed: () {
               _logout(context);
             },
-            icon: Icon(Icons.logout, color: Colors.redAccent),
+            icon: Icon(Icons.logout, color: Colors.black),
           ),
         ],
       ),
