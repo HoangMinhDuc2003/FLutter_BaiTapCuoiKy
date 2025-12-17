@@ -36,6 +36,8 @@ class _ChangeColorState extends State<ChangeColor> {
     });
   }
 
+  bool _pressed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,19 +100,63 @@ class _ChangeColorState extends State<ChangeColor> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 200),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Bấm vào đây để đổi màu: ",
-                          style: TextStyle(color: Colors.white),
+                    padding: const EdgeInsets.only(top: 300),
+                    child: GestureDetector(
+                      onTapDown: (_) {
+                        setState(() => _pressed = true);
+                      },
+                      onTapUp: (_) {
+                        setState(() => _pressed = false);
+                        _ChangeRandomColor();
+                      },
+                      onTapCancel: () {
+                        setState(() => _pressed = false);
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 150),
+                        transform: Matrix4.identity()
+                          ..scale(_pressed ? 0.95 : 1.0),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 14,
                         ),
-                        SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: _ChangeRandomColor,
-                          child: Text("Change"),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF00C6FF), Color(0xFF00C6FF)],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blueAccent.withOpacity(0.4),
+                              blurRadius: _pressed ? 5 : 15,
+                              offset: Offset(0, _pressed ? 3 : 8),
+                            ),
+                          ],
                         ),
-                      ],
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedRotation(
+                              turns: _pressed ? 0.05 : 0,
+                              duration: Duration(milliseconds: 150),
+                              child: Icon(
+                                Icons.auto_awesome,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              "Change",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],

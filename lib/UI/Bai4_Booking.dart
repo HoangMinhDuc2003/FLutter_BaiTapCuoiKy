@@ -227,7 +227,6 @@ class Booking extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 6),
-
                   // Số sao:
                   Row(
                     children: List.generate(
@@ -236,9 +235,7 @@ class Booking extends StatelessWidget {
                           Icon(Icons.star, size: 16, color: Colors.amber),
                     ),
                   ),
-
                   SizedBox(height: 6),
-
                   // Số đánh giá:
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

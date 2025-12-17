@@ -90,6 +90,10 @@ class _DemSoState extends State<DemSo> {
     );
   }
 
+  bool _pressedGiam = false;
+  bool _pressedReset = false;
+  bool _pressedTang = false;
+
   Widget MyBody() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -108,55 +112,98 @@ class _DemSoState extends State<DemSo> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: ElevatedButton(
-                onPressed: Giam,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.remove),
-                    SizedBox(width: 5),
-                    Text("Giảm"),
-                  ],
-                ),
-              ),
+            _buildActionButton(
+              label: "Giảm",
+              icon: Icons.remove,
+              colors: [Colors.redAccent, Colors.red],
+              pressed: _pressedGiam,
+              onTapDown: () => setState(() => _pressedGiam = true),
+              onTapUp: () {
+                setState(() => _pressedGiam = false);
+                Giam();
+              },
             ),
-            ElevatedButton(
-              onPressed: Reset,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 99, 99, 99),
-                foregroundColor: Colors.white,
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.refresh),
-                  SizedBox(width: 5),
-                  Text("Reset"),
-                ],
-              ),
+
+            SizedBox(width: 12),
+
+            _buildActionButton(
+              label: "Reset",
+              icon: Icons.refresh,
+              colors: [Colors.grey, Colors.black54],
+              pressed: _pressedReset,
+              onTapDown: () => setState(() => _pressedReset = true),
+              onTapUp: () {
+                setState(() => _pressedReset = false);
+                Reset();
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: ElevatedButton(
-                onPressed: Tang,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                ),
-                child: Row(
-                  children: [Icon(Icons.add), SizedBox(width: 5), Text("Tăng")],
-                ),
-              ),
+
+            SizedBox(width: 12),
+
+            _buildActionButton(
+              label: "Tăng",
+              icon: Icons.add,
+              colors: [Colors.greenAccent, Colors.green],
+              pressed: _pressedTang,
+              onTapDown: () => setState(() => _pressedTang = true),
+              onTapUp: () {
+                setState(() => _pressedTang = false);
+                Tang();
+              },
             ),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildActionButton({
+    required String label,
+    required IconData icon,
+    required List<Color> colors,
+    required bool pressed,
+    required VoidCallback onTapDown,
+    required VoidCallback onTapUp,
+  }) {
+    return GestureDetector(
+      onTapDown: (_) => onTapDown(),
+      onTapUp: (_) => onTapUp(),
+      onTapCancel: () => setState(() {}),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 150),
+        transform: Matrix4.identity()..scale(pressed ? 0.95 : 1.0),
+        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          gradient: LinearGradient(colors: colors),
+          boxShadow: [
+            BoxShadow(
+              color: colors.last.withOpacity(0.4),
+              blurRadius: pressed ? 5 : 14,
+              offset: Offset(0, pressed ? 3 : 8),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            AnimatedRotation(
+              turns: pressed ? 0.05 : 0,
+              duration: Duration(milliseconds: 150),
+              child: Icon(icon, color: Colors.white),
+            ),
+            SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.8,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

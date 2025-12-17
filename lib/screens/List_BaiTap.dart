@@ -128,45 +128,95 @@ Widget ListBaiTap() {
       backgroundColor: Colors.white,
       child: Column(
         children: [
-          // ===== HEADER =====
+          // Ảnh tên nè:
           Container(
-            height: 200,
+            height: 220,
             width: double.infinity,
-            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [Color(0xFF1A73E8), Color.fromARGB(255, 255, 255, 255)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 20,
+                  offset: Offset(0, 6),
+                ),
+              ],
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CircleAvatar(
-                  radius: 32,
-                  backgroundImage: AssetImage('assets/images/1.jpg'),
-                ),
-                SizedBox(height: 12),
-                Text(
-                  "Hoàng Đức",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                // AVATAR
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black38,
+                        blurRadius: 12,
+                        offset: Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: CircleAvatar(
+                    radius: 36,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      radius: 33,
+                      backgroundImage: AssetImage('assets/images/1.jpg'),
+                    ),
                   ),
                 ),
-                SizedBox(height: 4),
-                Text(
-                  "hoangminhduc21052003@gmail.com",
-                  style: TextStyle(fontSize: 13, color: Colors.white70),
+                const SizedBox(height: 14),
+                // Tên:
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.person_outline,
+                      size: 18,
+                      color: Colors.white70,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "Hoàng Đức",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        letterSpacing: 0.4,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                // Email:
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.mail_outline,
+                      size: 16,
+                      color: Colors.white60,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "hoangminhduc21052003@gmail.com",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.white.withOpacity(0.75),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
 
-          // ===== LIST BÀI TẬP =====
+          // Danh sách bài tập:
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(16),

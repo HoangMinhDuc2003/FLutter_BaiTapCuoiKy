@@ -22,6 +22,54 @@ class _DemThoiGianState extends State<DemThoiGian> {
     super.dispose();
   }
 
+  /// 🔔 Dialog hiện đại khi đếm xong
+  void _showDoneDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Container(
+            padding: EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 20)],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.timer_off_rounded, size: 70, color: Colors.green),
+                SizedBox(height: 16),
+                Text(
+                  "Hoàn thành!",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "Thời gian đã kết thúc",
+                  style: TextStyle(color: Colors.grey[600], fontSize: 15),
+                ),
+                SizedBox(height: 24),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: StadiumBorder(),
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   void batDauDem() {
     if (_dangDem) return;
 
@@ -48,9 +96,9 @@ class _DemThoiGianState extends State<DemThoiGian> {
         setState(() {
           _dangDem = false;
         });
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("⏰ Đếm xong!")));
+
+        // 🌟 Hiện dialog thay cho SnackBar
+        _showDoneDialog();
       }
     });
   }
@@ -125,6 +173,9 @@ class _DemThoiGianState extends State<DemThoiGian> {
     );
   }
 
+  bool _pressedStart = false;
+  bool _pressedResetTimer = false;
+
   Widget MyBody() {
     return Center(
       child: Column(
@@ -156,28 +207,83 @@ class _DemThoiGianState extends State<DemThoiGian> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton.icon(
-                onPressed: batDauDem,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                ),
-                icon: Icon(Icons.play_arrow),
-                label: Text("Bắt đầu"),
+              _buildActionButton(
+                label: "Bắt đầu",
+                icon: Icons.play_arrow,
+                colors: [Colors.greenAccent, Colors.green],
+                pressed: _pressedStart,
+                onTapDown: () => setState(() => _pressedStart = true),
+                onTapUp: () {
+                  setState(() => _pressedStart = false);
+                  batDauDem();
+                },
               ),
+
               SizedBox(width: 20),
-              ElevatedButton.icon(
-                onPressed: datLai,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  foregroundColor: Colors.white,
-                ),
-                icon: Icon(Icons.refresh),
-                label: Text("Đặt lại"),
+
+              _buildActionButton(
+                label: "Đặt lại",
+                icon: Icons.refresh,
+                colors: [Colors.orangeAccent, Colors.orange],
+                pressed: _pressedResetTimer,
+                onTapDown: () => setState(() => _pressedResetTimer = true),
+                onTapUp: () {
+                  setState(() => _pressedResetTimer = false);
+                  datLai();
+                },
               ),
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required String label,
+    required IconData icon,
+    required List<Color> colors,
+    required bool pressed,
+    required VoidCallback onTapDown,
+    required VoidCallback onTapUp,
+  }) {
+    return GestureDetector(
+      onTapDown: (_) => onTapDown(),
+      onTapUp: (_) => onTapUp(),
+      onTapCancel: () => setState(() {}),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 150),
+        transform: Matrix4.identity()..scale(pressed ? 0.95 : 1.0),
+        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          gradient: LinearGradient(colors: colors),
+          boxShadow: [
+            BoxShadow(
+              color: colors.last.withOpacity(0.4),
+              blurRadius: pressed ? 5 : 14,
+              offset: Offset(0, pressed ? 3 : 8),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            AnimatedRotation(
+              turns: pressed ? 0.05 : 0,
+              duration: Duration(milliseconds: 150),
+              child: Icon(icon, color: Colors.white),
+            ),
+            SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.8,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

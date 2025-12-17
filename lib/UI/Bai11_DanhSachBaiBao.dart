@@ -11,6 +11,9 @@ class DSBaiBao extends StatefulWidget {
 }
 
 class _DSBaiBaoState extends State<DSBaiBao> {
+  TextEditingController searchController = TextEditingController();
+  List<Articles> allArticles = [];
+  List<Articles> filteredArticles = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -93,11 +96,69 @@ class _DSBaiBaoState extends State<DSBaiBao> {
   }
 
   Widget MyBody(News res) {
+    allArticles = res.articles;
+
+    if (filteredArticles.isEmpty) {
+      filteredArticles = allArticles;
+    }
+    return Column(
+      children: [
+        buildSearchBox(),
+        Expanded(child: buildList()),
+      ],
+    );
+  }
+
+  Widget buildSearchBox() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+      child: TextField(
+        controller: searchController,
+        textInputAction: TextInputAction.search,
+        onSubmitted: (value) {
+          setState(() {
+            filteredArticles = allArticles.where((article) {
+              return article.title.toLowerCase().contains(value.toLowerCase());
+            }).toList();
+          });
+        },
+        style: const TextStyle(fontSize: 15),
+        decoration: InputDecoration(
+          hintText: "Tìm bài báo...",
+          hintStyle: TextStyle(color: Colors.grey.shade500),
+          prefixIcon: const Icon(Icons.search),
+          suffixIcon: searchController.text.isNotEmpty
+              ? IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    searchController.clear();
+                    setState(() {
+                      filteredArticles = allArticles;
+                    });
+                  },
+                )
+              : null,
+          filled: true,
+          fillColor: Colors.grey.shade100,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 14,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildList() {
     return ListView.builder(
       padding: EdgeInsets.all(10),
-      itemCount: res.articles.length,
+      itemCount: filteredArticles.length,
       itemBuilder: (context, index) {
-        var item = res.articles[index];
+        var item = filteredArticles[index];
 
         return InkWell(
           onTap: () {
@@ -118,7 +179,6 @@ class _DSBaiBaoState extends State<DSBaiBao> {
               padding: EdgeInsets.all(12),
               child: Row(
                 children: [
-                  // ẢNH BÊN TRÁI
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
@@ -126,14 +186,12 @@ class _DSBaiBaoState extends State<DSBaiBao> {
                       width: 120,
                       height: 90,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stack) {
-                        return Container(
-                          width: 120,
-                          height: 90,
-                          color: Colors.grey[300],
-                          child: Icon(Icons.image_not_supported, size: 40),
-                        );
-                      },
+                      errorBuilder: (_, __, ___) => Container(
+                        width: 120,
+                        height: 90,
+                        color: Colors.grey[300],
+                        child: Icon(Icons.image_not_supported),
+                      ),
                     ),
                   ),
                   SizedBox(width: 12),
