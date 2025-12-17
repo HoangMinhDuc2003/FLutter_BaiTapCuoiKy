@@ -28,7 +28,7 @@ class APIService {
   Future<News> getAllNews() async {
     try {
       var response = await dio.get(
-        'https://newsapi.org/v2/everything?q=a&language=vix&apiKey=19882bac6ed8447a851f3826c2a7e3aa',
+        'https://newsapi.org/v2/everything?q=a&language=vi&apiKey=19882bac6ed8447a851f3826c2a7e3aa',
         options: Options(
           responseType: ResponseType.json,
           headers: {"User-Agent": "Mozilla/5.0", "Accept": "image/*"},
